@@ -22,10 +22,17 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-app.use(bodyParser.urlencoded({
-  extended: true
-}));
+// Configuring express to use body-parser
+// as middle-ware
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
 
+// Get request for root of the app
+app.get("/", function (req, res) {
+  
+  // Sending index.html to the browser
+  res.sendFile(__dirname + "/views/index.jade");
+});
 
 // cors
 app.use(cors())

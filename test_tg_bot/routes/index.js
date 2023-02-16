@@ -1,5 +1,8 @@
 var express = require('express');
+let https = require('request')
+
 var router = express.Router();
+
 
 // modify there... .
 // var telegaBot = require('./telegaBot');
@@ -9,7 +12,6 @@ var router = express.Router();
 
   // console.log('reqBody', req.body);
 
-  let http = require('request')
   let reqBody = req.body
   // Elem's to array
   let fields = [
@@ -25,6 +27,7 @@ var router = express.Router();
     '<b>Company name</b>: ' + reqBody.data.right_companyName,
     '<b>Description</b>: ' + reqBody.data.right_description,
   ]
+  
   // iterate through the array and glue everything into one line
   let msg = ''
   fields.forEach(field => {
@@ -33,7 +36,7 @@ var router = express.Router();
     // encode the result into text understandable to the address bar
     msg = encodeURI(msg)
   // move request
-  http.post(`https://api.telegram.org/bot${'5905791429:AAEszFq4I51W6DtmhahAWBPNiQMxUamrQs0'}/sendMessage?chat_id=${'-1001154757112'}&parse_mode=html&text=${msg}`, function (error, response, body) {  
+  https.post(`https://api.telegram.org/bot${'5905791429:AAEszFq4I51W6DtmhahAWBPNiQMxUamrQs0'}/sendMessage?chat_id=${'-1001154757112'}&parse_mode=html&text=${msg}`, function (error, response, body) {  
     // response resolve
     // console.log('error:', error); 
     // console.log('statusCode:', response && response.statusCode); 

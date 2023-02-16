@@ -1,5 +1,13 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to dsadsad #{title}
+  h1 Welcome to HTTPS Server
+    br
+    br
+    h3 Enter your message
+    //
+      sending post request to "mssg" with
+      the message from the textarea
+    form(action='mssg' method='post')
+      textarea(name='message' id='' cols='30' rows='10')
+      button(type='submit') Send
