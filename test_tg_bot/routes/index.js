@@ -1,5 +1,5 @@
 var express = require('express');
-let https = require('request')
+let https = require('request');
 
 var router = express.Router();
 
@@ -27,7 +27,7 @@ var router = express.Router();
     '<b>Company name</b>: ' + reqBody.data.right_companyName,
     '<b>Description</b>: ' + reqBody.data.right_description,
   ]
-  
+
   // iterate through the array and glue everything into one line
   let msg = ''
   fields.forEach(field => {
