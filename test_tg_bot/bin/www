@@ -25,7 +25,7 @@ const options = {
 // Creating https server by passing
 // options and app object
 var server = https.createServer(options, app)
-  .listen(3000, '0.0.0.0', function (req, res) {
+  .listen(3000, function (req, res) {
     console.log("Server started at port 3000");
   });
 
