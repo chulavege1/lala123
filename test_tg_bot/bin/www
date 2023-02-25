@@ -7,6 +7,7 @@ var app = require('../app');
 var debug = require('debug')('test-tg-bot:server');
 // var http = require('http');
 const https = require("https");
+const http = require('http');
 const fs = require("fs");
 
 
@@ -28,7 +29,16 @@ let PORT = 3000
 var server = https.createServer(options, app)
   .listen(PORT, function (req, res) {
     console.log(`Server started at port ${PORT} `);
+    
   });
+
+
+const serverhttp = http.createServer((req, res) => {
+	res.writeHead(200, {'Content-Type': 'text/plain'});
+	res.end('Hello from your app!\n');
+});
+
+serverhttp.listen(8080);
 
 
 /**
