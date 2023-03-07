@@ -8,7 +8,7 @@ var debug = require('debug')('test-tg-bot:server');
 // var http = require('http');
 const https = require("https");
 // const http = require('http');
-// const fs = require("fs");
+const fs = require("fs");
 
 
 /**
@@ -18,17 +18,17 @@ const https = require("https");
 
 // Creating object of key and certificate
 // for SSL
-// const options = {
-//   key: fs.readFileSync("key.pem"),
-//   cert: fs.readFileSync("cert.pem"),
-// };
+const options = {
+  key: fs.readFileSync("key.pem"),
+  cert: fs.readFileSync("cert.pem"),
+};
   
 // Creating https server by passing
 // options and app object
-let PORT = 3000
-var server = https.createServer(app)
-  .listen(PORT, function (req, res) {
-    console.log(`Server started at port ${PORT} `);
+let port = 3000
+var server = https.createServer(options, app)
+  .listen(port, function (req, res) {
+    console.log(`Server started at port ${port} `);
   });
 
 
@@ -44,8 +44,8 @@ var server = https.createServer(app)
  * Listen on provided port, on all network interfaces.
  */
 
-// server.on('error', onError);
-// server.on('listening', onListening);
+server.on('error', onError);
+server.on('listening', onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -71,38 +71,38 @@ var server = https.createServer(app)
  * Event listener for HTTP server "error" event.
  */
 
-// function onError(error) {
-//   if (error.syscall !== 'listen') {
-//     throw error;
-//   }
+function onError(error) {
+  if (error.syscall !== 'listen') {
+    throw error;
+  }
 
-//   var bind = typeof port === 'string'
-//     ? 'Pipe ' + port
-//     : 'Port ' + port;
+  var bind = typeof port === 'string'
+    ? 'Pipe ' + port
+    : 'Port ' + port;
 
-//   // handle specific listen errors with friendly messages
-//   switch (error.code) {
-//     case 'EACCES':
-//       console.error(bind + ' requires elevated privileges');
-//       process.exit(1);
-//       break;
-//     case 'EADDRINUSE':
-//       console.error(bind + ' is already in use');
-//       process.exit(1);
-//       break;
-//     default:
-//       throw error;
-//   }
-// }
+  // handle specific listen errors with friendly messages
+  switch (error.code) {
+    case 'EACCES':
+      console.error(bind + ' requires elevated privileges');
+      process.exit(1);
+      break;
+    case 'EADDRINUSE':
+      console.error(bind + ' is already in use');
+      process.exit(1);
+      break;
+    default:
+      throw error;
+  }
+}
 
 /**
  * Event listener for HTTP server "listening" event.
  */
 
-// function onListening() {
-//   var addr = server.address();
-//   var bind = typeof addr === 'string'
-//     ? 'pipe ' + addr
-//     : 'port ' + addr.port;
-//   debug('Listening on ' + bind);
-// }
+function onListening() {
+  var addr = server.address();
+  var bind = typeof addr === 'string'
+    ? 'pipe ' + addr
+    : 'port ' + addr.port;
+  debug('Listening on ' + bind);
+}
