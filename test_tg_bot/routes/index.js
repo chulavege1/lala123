@@ -121,21 +121,21 @@ Commision.find({ })
   });
 
   
-// // middleware that is specific to this router
-//   router.post('/admin/params', (req, res) => {
-//     const { param1, param2 } = req.body; // Получаем параметры из запроса
+// middleware that is specific to this router
+  router.post('/admin/params', (req, res) => {
+    const { commision_value } = req.body; // Получаем параметры из запроса
     
-//     // Создаем новый объект Commision и сохраняем его в базе данных
-//     const newParam = new Commision({ param1, param2 });
-//     newParam.save()
-//       .then( () => res.send('Параметры сохранены'))
-//       .catch(err => {
-//         console.error(err);
-//         res.status(500).send('Ошибка сохранения параметров');
-//       });
-//     // Обработчик события при успешном подключении к базе данных
+    // Создаем новый объект Commision и сохраняем его в базе данных
+    const newParam = new Commision({ commision_value });
+    newParam.save()
+      .then( () => res.send('Параметры сохранены'))
+      .catch(err => {
+        console.error(err);
+        res.status(500).send('Ошибка сохранения параметров');
+      });
+    // Обработчик события при успешном подключении к базе данных
 
-//   });
+  });
 
 
 
