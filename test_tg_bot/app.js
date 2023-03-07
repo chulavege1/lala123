@@ -32,15 +32,21 @@ app.get("/", function (req, res) {
   res.sendFile(__dirname + "/views/index.jade");
 });
 
+// Get request for root of the app
+app.get("/lcl", function (req, res) {
+  // Sending index.html to the browser
+  res.sendFile(__dirname + "/views/index.jade");
+});
+
 // cors
 app.use(cors())
 
 // Разрешаем доступ только от указанных источников
-app.use(cors({
-  origin: ['http://localhost:5003/#/', 'https://cyberial.app/'],
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type'],
-}));
+// app.use(cors({
+//   origin: ['http://localhost:5003/#/', 'https://cyberial.app/'],
+//   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//   allowedHeaders: ['Content-Type'],
+// }));
 
 
 app.use('/', indexRouter);
