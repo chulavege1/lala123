@@ -17,11 +17,11 @@ const fs = require("fs");
 
 
 // Creating object of key and certificate
-// for SSL
-const options = {
-  key: fs.readFileSync("key.pem"),
-  cert: fs.readFileSync("cert.pem"),
-};
+// // for SSL
+// const options = {
+//   key: fs.readFileSync("key.pem"),
+//   cert: fs.readFileSync("cert.pem"),
+// };
   
 // Creating https server by passing
 // options and app object
@@ -32,12 +32,12 @@ var server = https.createServer(app)
   });
 
 
-const serverhttp = http.createServer((req, res) => {
-	res.writeHead(200, {'Content-Type': 'text/plain'});
-	res.end('Hello from your app!\n');
-});
+// const serverhttp = http.createServer((req, res) => {
+// 	res.writeHead(200, {'Content-Type': 'text/plain'});
+// 	res.end('Hello from your app!\n');
+// });
 
-serverhttp.listen(8080);
+// serverhttp.listen(8080);
 
 
 /**
