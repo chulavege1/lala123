@@ -18,8 +18,6 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 app.use(logger('dev'));
-app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 // Configuring express to use body-parser
@@ -27,9 +25,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
 // Get request for root of the app
 app.get("/", function (req, res) {
-  
   // Sending index.html to the browser
   res.sendFile(__dirname + "/views/index.jade");
 });

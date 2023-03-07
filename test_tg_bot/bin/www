@@ -29,16 +29,15 @@ let PORT = 3000
 var server = https.createServer(options, app)
   .listen(PORT, function (req, res) {
     console.log(`Server started at port ${PORT} `);
-    
   });
 
 
-const serverhttp = http.createServer((req, res) => {
-	res.writeHead(200, {'Content-Type': 'text/plain'});
-	res.end('Hello from your app!\n');
-});
+// const serverhttp = http.createServer((req, res) => {
+// 	res.writeHead(200, {'Content-Type': 'text/plain'});
+// 	res.end('Hello from your app!\n');
+// });
 
-serverhttp.listen(8080);
+// serverhttp.listen(8080);
 
 
 /**
