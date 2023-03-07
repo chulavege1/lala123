@@ -35,6 +35,14 @@ app.get("/", function (req, res) {
 // cors
 app.use(cors())
 
+// Разрешаем доступ только от указанных источников
+app.use(cors({
+  origin: ['http://localhost:5003/#/', 'https://cyberial.app/'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type'],
+}));
+
+
 app.use('/', indexRouter);
 // app.use('/example/b', usersRouter);
 
