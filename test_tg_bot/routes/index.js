@@ -109,16 +109,16 @@ Commision.find({ })
 
 
 
-  // Маршрут GET для получения данных из базы данных
-  router.get('/params', async (req, res) => {
-    try {
-      const params = await Commision.find();
-      res.send(params);
-    } catch (err) {
-      console.log(err);
-      res.status(500).send('Ошибка сервера');
-    }
-  });
+    // Маршрут GET для получения данных из базы данных
+    router.get('/params', async (req, res) => {
+      try {
+        const params = await Commision.find();
+        res.send(params);
+      } catch (err) {
+        console.log(err);
+        res.status(500).send('Ошибка сервера');
+      }
+    });
 
   
 // middleware that is specific to this router
