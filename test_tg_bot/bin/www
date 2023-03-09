@@ -32,12 +32,12 @@ const server = https.createServer(app)
   });
 
 
-const serverhttp = http.createServer((req, res) => {
-	res.writeHead(200, {'Content-Type': 'text/plain'});
-	res.end('Hello from your app!\n');
-});
+// const serverhttp = http.createServer((req, res) => {
+// 	res.writeHead(200, {'Content-Type': 'text/plain'});
+// 	res.end('Hello from your app!\n');
+// });
 
-serverhttp.listen(7777);
+// serverhttp.listen(7777);
 
 
 /**
