@@ -24,7 +24,7 @@ router.get('/laldva', (req, res) => {
 // var telegaBot = require('./telegaBot');
 
 // middleware that is specific to this router
-  router.post('/', function(req, res, next) {
+  router.post('/tgmessage', function(req, res, next) {
 
   // console.log('reqBody', req.body);
 
