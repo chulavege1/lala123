@@ -2,7 +2,6 @@ var express = require('express');
 var app = require('../app');
 
 const mongoose = require('mongoose');
-const fs = require('fs');
 const https = require("https");
 
 var router = express.Router();
