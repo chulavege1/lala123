@@ -93,13 +93,13 @@ const paramSchema = new mongoose.Schema({
 
 const Commision = mongoose.model('Commision', paramSchema);
 
-// Commision.find({ })
-//   .then((user) => {
-//     console.log('userrrr12312312', user)
-//   })
-//   .catch((err) => {
-//     console.log('ererrerrerrerrerrr', err)
-//   });
+Commision.find({ })
+  .then((user) => {
+    console.log('userrrr12312312', user)
+  })
+  .catch((err) => {
+    console.log('ererrerrerrerrerrr', err)
+  });
   
 
   router.put('/admin/params/:id', (req, res) => {
