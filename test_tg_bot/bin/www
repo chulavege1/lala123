@@ -15,7 +15,6 @@ const options = {
   cert: fs.readFileSync('/etc/letsencrypt/live/www.cyberial.app/fullchain.pem')
 };
 
-const app = express();
 
 app.get('/lal', (req, res) => {
   res.send('Hello, World!');
