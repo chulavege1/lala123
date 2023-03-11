@@ -1,32 +1,26 @@
 var express = require('express');
-let https = require('request');
+var app = require('../app');
+
 const mongoose = require('mongoose');
 const fs = require('fs');
 const https = require("https");
 
 var router = express.Router();
 
-const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/www.cyberial.app/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/www.cyberial.app/fullchain.pem')
-};
 
-
-app.get('/lal', (req, res) => {
+router.get('/lal', (req, res) => {
   res.send('Hello, World!');
 });
 
-https.createServer(options, app).listen(3000, () => {
-  console.log('HTTPS server running on port 3000');
-});
+// https.createServer(options, app).listen(3000, () => {
+//   console.log('HTTPS server running on port 3000');
+// });
 
-app.get('/laldva', (req, res) => {
+router.get('/laldva', (req, res) => {
   res.send('Hello, World!');
 });
 
-app.listen(5000, () => {
-  console.log('HTTP server running on port 80');
-});
+
 
 // modify there... .
 // var telegaBot = require('./telegaBot');
