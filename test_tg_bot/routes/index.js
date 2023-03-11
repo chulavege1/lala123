@@ -79,13 +79,13 @@ const paramSchema = new mongoose.Schema({
 
 const Commision = mongoose.model('Commision', paramSchema);
 
-Commision.find({ })
-  .then((user) => {
-    console.log('userrrr12312312', user)
-  })
-  .catch((err) => {
-    console.log('ererrerrerrerrerrr', err)
-  });
+// Commision.find({ })
+//   .then((user) => {
+//     console.log('userrrr12312312', user)
+//   })
+//   .catch((err) => {
+//     console.log('ererrerrerrerrerrr', err)
+//   });
   
 
   router.put('/admin/params/:id', (req, res) => {
@@ -110,15 +110,15 @@ Commision.find({ })
 
 
   // Маршрут GET для получения данных из базы данных
-  router.get('/params', async (req, res) => {
-    try {
-      const params = await Commision.find();
-      res.send(params);
-    } catch (err) {
-      console.log(err);
-      res.status(500).send('Ошибка сервера');
-    }
-  });
+  // router.get('/params', async (req, res) => {
+  //   try {
+  //     const params = await Commision.find();
+  //     res.send(params);
+  //   } catch (err) {
+  //     console.log(err);
+  //     res.status(500).send('Ошибка сервера');
+  //   }
+  // });
 
   
 // middleware that is specific to this router
