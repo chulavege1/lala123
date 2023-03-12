@@ -39,10 +39,6 @@ https.createServer(options, app).listen(3000, () => {
   console.log('HTTPS server running on port 3000');
 });
 
-app.listen(4000, () => {
-  console.log('HTTP server running on port 80');
-});
-
 http.createServer(app).listen(4000, () => {
   console.log('HTTP server running on port 80');
 });
