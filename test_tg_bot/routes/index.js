@@ -1,5 +1,6 @@
 var express = require('express');
 const https = require("https");
+const http = require("http");
 
 const mongoose = require('mongoose');
 
@@ -9,9 +10,7 @@ var router = express.Router();
 // modify there... .
 // var telegaBot = require('./telegaBot');
 
-// middleware that is specific to this router
-  router.post('/', function(req, res, next) {
-
+router.post('/', function(req, res, next) {
   console.log('reqBody', req.body);
 
   let reqBody = req.body
@@ -31,35 +30,57 @@ var router = express.Router();
     '<b>Description</b>: ' + reqBody.data.right_description,
   ]
 
+  const TGKEY = '5905791429:AAEszFq4I51W6DtmhahAWBPNiQMxUamrQs0'
+
   // iterate through the array and glue everything into one line
   let msg = ''
   fields.forEach(field => {
     msg += field + '\n'
   });
-    // encode the result into text understandable to the address bar
-    msg = encodeURI(msg)
-  // move request
-  https.post(`https://api.telegram.org/bot${'5905791429:AAEszFq4I51W6DtmhahAWBPNiQMxUamrQs0'}/sendMessage?chat_id=${'-1001154757112'}&parse_mode=html&text=${msg}`, function (error, response, body) {  
-    // response resolve
-    // console.log('error:', error); 
-    console.log('statusCode:', response && response.statusCode); 
-    var personOBJ = JSON.parse(body);
-    console.log('body:', personOBJ.result.message_id);
+  // encode the result into text understandable to the address bar
+  msg = encodeURI(msg)
 
-    // console.log('message_thread_id:', message_thread_id); 
-
-    if(response.statusCode === 200){
-      res.status(200).json({ message_id: personOBJ.result.message_id, status: 'ok', message: 'Успешно отправлено!' });
-      
+  const options = {
+    method: 'POST',
+    hostname: 'api.telegram.org',
+    path: `/bot${TGKEY}/sendMessage?chat_id=${'-1001154757112'}&parse_mode=html&text=${msg}`,
+    headers: {
+      'Content-Type': 'application/json'
     }
-    if(response.statusCode !== 200){
-      res.status(400).json({status: 'error', message: 'Произошла ошибка!'});
-    }
+  };
 
+  const requestTgMessage = https.request(options, (telegramRes) => {
+    let data = '';
+    telegramRes.on('data', (chunk) => {
+      data += chunk;
+    });
+    telegramRes.on('end', () => {
+      console.log('Response:', data);
+      const telegramResponse = JSON.parse(data);
+      if (telegramResponse && telegramResponse.ok) {
+        res.status(200).json({
+          message_id: telegramResponse.result.message_id,
+          status: 'ok',
+          message: 'Успешно отправлено!'
+        });
+      } else {
+        res.status(400).json({
+          status: 'error',
+          message: 'Произошла ошибка!'
+        });
+      }
+    });
   });
 
-                
+  requestTgMessage.on('error', (error) => {
+    console.error('Error:', error);
+    res.status(400).json({
+      status: 'error',
+      message: 'Произошла ошибка!'
+    });
+  });
 
+  requestTgMessage.end();
 });
 
 

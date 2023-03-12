@@ -5,6 +5,7 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const fs = require('fs');
 const https = require("https");
+const http = require('http');
 
 
 var cors = require('cors')
@@ -27,6 +28,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
+
 const options = {
   key: fs.readFileSync('/etc/letsencrypt/live/www.cyberial.app/privkey.pem'),
   cert: fs.readFileSync('/etc/letsencrypt/live/www.cyberial.app/fullchain.pem')
@@ -40,6 +43,10 @@ app.listen(4000, () => {
   console.log('HTTP server running on port 80');
 });
 
+http.createServer(app).listen(4000, () => {
+  console.log('HTTP server running on port 80');
+});
+
 // Get request for root of the app
 app.get("/", function (req, res) {
   // Sending index.html to the browser
@@ -48,7 +55,7 @@ app.get("/", function (req, res) {
 
 // cors
 app.use(cors({
-  origin: 'http://localhost:5003'
+  // origin: 'http://localhost:5003'
 }));
 
 
