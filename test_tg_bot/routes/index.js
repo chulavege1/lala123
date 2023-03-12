@@ -6,25 +6,11 @@ const mongoose = require('mongoose');
 var router = express.Router();
 
 
-router.get('/lal', (req, res) => {
-  res.send('Hello, World!');
-});
-
-// https.createServer(options, app).listen(3000, () => {
-//   console.log('HTTPS server running on port 3000');
-// });
-
-router.get('/laldva', (req, res) => {
-  res.send('Hello, World!');
-});
-
-
-
 // modify there... .
 // var telegaBot = require('./telegaBot');
 
 // middleware that is specific to this router
-  router.post('/tgmessage', function(req, res, next) {
+  router.post('/', function(req, res, next) {
 
   console.log('reqBody', req.body);
 

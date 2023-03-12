@@ -27,14 +27,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
-const options = {
-  key: fs.readFileSync('/etc/letsencrypt/live/www.cyberial.app/privkey.pem'),
-  cert: fs.readFileSync('/etc/letsencrypt/live/www.cyberial.app/fullchain.pem')
-};
+// const options = {
+//   key: fs.readFileSync('/etc/letsencrypt/live/www.cyberial.app/privkey.pem'),
+//   cert: fs.readFileSync('/etc/letsencrypt/live/www.cyberial.app/fullchain.pem')
+// };
 
-https.createServer(options, app).listen(3000, () => {
-  console.log('HTTPS server running on port 3000');
-});
+// https.createServer(options, app).listen(3000, () => {
+//   console.log('HTTPS server running on port 3000');
+// });
 
 app.listen(4000, () => {
   console.log('HTTP server running on port 80');
