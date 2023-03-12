@@ -26,7 +26,7 @@ router.get('/laldva', (req, res) => {
 // middleware that is specific to this router
   router.post('/tgmessage', function(req, res, next) {
 
-  // console.log('reqBody', req.body);
+  console.log('reqBody', req.body);
 
   let reqBody = req.body
   // Elem's to array
